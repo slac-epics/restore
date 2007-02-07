@@ -1,4 +1,4 @@
-Instructions for dbRestore users                    Last Updated 02/03/2007
+Instructions for dbRestore users                    Last Updated 02/06/2007
 --------------------------------
 
 I - Adding the restore package to your IOC application:
@@ -32,8 +32,12 @@ II - Modifying your IOC databases:
 (3) Set "PINI=YES" for all setpoint records so that records are not invalid
     after iocInit is finished.
 
-III - Adding dbRestore to your IOC startup file:
-------------------------------------------------
+III - Setting up ChannelWatcher to Save Setpoints
+-------------------------------------------------
+(1) Follow directions in $TOOLS/ChannelWatcher/README.
+
+IV - Adding dbRestore to your IOC startup file:
+-----------------------------------------------
 
 (1) Follow instructions in $(TOOLS)/ChannelWatcher/README to add setpoints
     to ChannelWatcher for monitoring and restore file update.
