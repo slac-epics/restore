@@ -21,14 +21,14 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #
-PROD_HOST += dbRestoreServer
+#PROD_HOST += dbRestoreServer
 
 # Source files (for depends target):
-dbRestoreServer_SRCS  += dbRestoreServer.c
-dbRestoreServer_SRCS  += restoreLib.c
-dbRestoreServer_SRCS  += restoreSockLib.c
-dbRestoreServer_SRCS  += restoreFileLib.c
-dbRestoreServer_LIBS  += Com
+#dbRestoreServer_SRCS  += dbRestoreServer.c
+#dbRestoreServer_SRCS  += restoreLib.c
+#dbRestoreServer_SRCS  += restoreSockLib.c
+#dbRestoreServer_SRCS  += restoreFileLib.c
+#dbRestoreServer_LIBS  += Com
 
 # Link everything into a library:
 LIBRARY_IOC = restore
