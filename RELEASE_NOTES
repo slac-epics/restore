@@ -1,0 +1,14 @@
+Release Notes for the setpoint restore package
+----------------------------------------------
+
+restore-R1-0-1: Aug 9, 2007
+	* Added RELEASE_NOTES.
+	* Updated README to add detail on the timeout argument of dbRestore.
+	* src/dbRestore.c - allow timeout and retries for file opens so 
+          that an ioc will not proceed in its startup until it can restore
+	  its setpoints.
+	* src/restoreLib.h, restoreFileLib.h, dbRestoreServer - allow file 
+	  names of up to 256 chars.
+
+restore-R1-0-0: June 25, 2007
+	* Initial version
