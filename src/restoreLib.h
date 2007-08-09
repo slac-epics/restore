@@ -18,6 +18,7 @@
 #define RESTORE_MAX_BUFFER_CHARS  1000
 #define RESTORE_MAX_LINE_CHARS    300
 #define RESTORE_MAX_NAME_CHARS    80
+#define RESTORE_MAX_FILE_NAME_CHARS 256
 #define RESTORE_DELAY             5.0  /* seconds */
 #define RESTORE_MAX_SELECT_DELAY  600  /* seconds */
 #define RESTORE_MIN_SELECT_DELAY  45   /* seconds */
@@ -94,8 +95,8 @@ extern "C" {
 
   typedef struct restoreOutDef {
     FILE   *outFd;
-    char   outFile[RESTORE_MAX_NAME_CHARS];
-    char   buFile[RESTORE_MAX_NAME_CHARS];
+    char   outFile[RESTORE_MAX_FILE_NAME_CHARS];
+    char   buFile[RESTORE_MAX_FILE_NAME_CHARS];
   } restoreOutDef;
 
   typedef union restoreFd {

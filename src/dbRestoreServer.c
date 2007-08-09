@@ -29,7 +29,7 @@ int main(void)
   int                flag = 1;
   int                status = -1;
   char               *periodp;
-  char               name[RESTORE_MAX_NAME_CHARS];
+  char               name[RESTORE_MAX_FILE_NAME_CHARS];
   char               buffer[RESTORE_MAX_LINE_CHARS];
   
   memset (&serverAddr, 0, addrSize);

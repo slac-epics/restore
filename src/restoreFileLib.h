@@ -13,7 +13,7 @@ extern "C" {
   typedef struct restoreFileDef {
     restoreOutDef out;
     FILE   *inpFd;
-    char   inpFile[RESTORE_MAX_NAME_CHARS];
+    char   inpFile[RESTORE_MAX_FILE_NAME_CHARS];
   } restoreFileDef;
 
   int restoreFileInit (char *name, restoreFileDef *filep, float *versionp);

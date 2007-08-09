@@ -75,15 +75,14 @@ static int dbRestoreWrite(restoreType type, restoreFd fd, char *iocName);
  *      iocName      - IOC name.  If not provided, RESTORE_IOCNAME
  *                     env var is used if available, otherwise, the
  *                     host name is used.
- *      timeAllowed  - time allowed for socket restore.  Not used
- *                     for file restore.  Defaults to 0 if not provided.
- *                     If set to a negative value, this routine will wait
- *                     indefinitely to connect, send, and receive data,
- *                     including retries if connection is broken before
- *                     all data is received.  If zero, this routine will
- *                     try only once to connect and receive data.  If
+ *      timeAllowed  - time allowed for the restore.  Defaults to 0 if not
+ *                     provided. If set to a negative value, this routine will
+ *                     wait/retry indefinitely to connect, send, and receive
+ *                     data (socket restore) or open and read data (file
+ *                     restore).  If zero, this routine will
+ *                     try only once to connect/open and receive/read data.  If
  *                     greater than zero, this routine will attempt
- *                     to connect and receive data until timeout.
+ *                     to connect/open and receive/read data until timeout.
  *      putType      - 0 (default) = static  restore using dbPutString.
  *                     1           = runtime restore using dbPut.
  *                     2           = runtime restore using dbPutField.
@@ -141,10 +140,7 @@ int dbRestore(char *source, char *iocName, int timeAllowed,
   source  = restoreGetEnv(source);
   type    = restoreGetType(source);
   iocName = restoreGetName(iocName, hostName);
-  if (type == RESTORE_FILE) {
-    timeAllowed = 0;
-  }
-  else {
+  if (type == RESTORE_SOCK) {
     if ((!cmd) && (putType != RESTORE_STATIC)) cmd = RESTORE_DBPUTNAME;
     cmd = restoreGetEnv(cmd);
   }
@@ -171,10 +167,11 @@ int dbRestore(char *source, char *iocName, int timeAllowed,
      */
     rStatus = RESTORE_OK;
     status = restoreInit(type, source, timeAllowed, cmd, rObjp, &version);
-    if (type == RESTORE_SOCK) {
-      if (status) {
-      }
-      else if (cmd) {
+    if (status) {
+      rStatus = RESTORE_DONE;
+    }
+    else if (type == RESTORE_SOCK) {
+      if (cmd) {
         len = sprintf(input_line, "%s %s\n%s\n%s\n",
                       RESTORE_IOC_STRING, iocName, cmd,
                       RESTORE_END_STRING);
@@ -186,7 +183,6 @@ int dbRestore(char *source, char *iocName, int timeAllowed,
       }
       if (status) rStatus = RESTORE_DONE;
     }
-    else if (status) break;
     /*
      * Start restoring now - line-by-line.
      * Lines starting with "#" are ignored.
@@ -506,7 +502,7 @@ int reboot_restore(char *source)
 }
 int restoreFile(char *source)
 {
-  char  inpFile[RESTORE_MAX_NAME_CHARS];
+  char  inpFile[RESTORE_MAX_FILE_NAME_CHARS];
   char *rsource = restoreGetEnv(source);
   
   if (rsource) strcpy(inpFile, rsource);
