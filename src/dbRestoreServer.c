@@ -34,7 +34,7 @@ int main(void)
   
   memset (&serverAddr, 0, addrSize);
   serverAddr.sin_family      = AF_INET;
-  serverAddr.sin_port        = htonl(RESTORE_DEFAULT_PORT);
+  serverAddr.sin_port        = htons(RESTORE_DEFAULT_PORT);
   serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   /*
    * Create a socket, bind, and listen.
