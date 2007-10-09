@@ -1,5 +1,7 @@
 Release Notes for the setpoint restore package
 ----------------------------------------------
+restore-R1-0-2:
+Built Against EPICS BASE R3.14.8.2 and RTEMS 4.7.1 (base-R3-14-8-2-lcls2)
 
 restore-R1-0-1: Aug 9, 2007
 	* Added RELEASE_NOTES.
@@ -9,6 +11,7 @@ restore-R1-0-1: Aug 9, 2007
 	  its setpoints.
 	* src/restoreLib.h, restoreFileLib.h, dbRestoreServer - allow file 
 	  names of up to 256 chars.
+Built Against EPICS BASE R3.14.8.2 and RTEMS 4.7 (base-R3-14-8-2-lcls1)
 
 restore-R1-0-0: June 25, 2007
 	* Initial version
