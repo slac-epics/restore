@@ -1,5 +1,8 @@
 Release Notes for the setpoint restore package
 ----------------------------------------------
+restore-R1-0-3:
+Built Against EPICS BASE R3.14.9 and RTEMS 4.7.1 (base-R3-14-9-lcls1)
+
 restore-R1-0-2:
 Built Against EPICS BASE R3.14.8.2 and RTEMS 4.7.1 (base-R3-14-8-2-lcls2)
 
