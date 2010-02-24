@@ -9,6 +9,8 @@
 #  Rev:  dd-mmm-yyyy, Reviewer's Name    (USERNAME)
 #--------------------------------------------------------------
 #  Mod:
+#        23-Feb-2010, K. Luchini         (LUCHINI):
+#           release restore-R2-1-0
 #        28-Aug-2009, K. Luchini         (LUCHINI):
 #           release restore-R2-0-0
 #        08-Aug-2007
@@ -18,6 +20,9 @@
 #
 #==============================================================
 #
+restore-R2-1-0:  Build with rtems-4.9.3
+                 Build with epics R3.14.8.
+
 restore-R2-0-0:  Build with rtems-4.9.1
                  Build with epics R3.14.8.2
 
