@@ -22,6 +22,9 @@
 #
 #==============================================================
 #
+restore-R2-2-2:  Synchronize with restore from spear.
+		 Remove reboot_restore to prevent conflict with autosave.
+
 restore-R2-2-1:  modify configure/RELEASE file to follow eco style
 
 restore-R2-2-0:  Build with rtems-4.9.4
