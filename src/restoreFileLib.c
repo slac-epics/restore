@@ -16,15 +16,6 @@
 #include "errlog.h"
 #include "restoreFileLib.h"
 
-/* Added this because of EPICS R3-14-12 */
-#ifndef max
-#define max(x, y)       (((x) < (y)) ? (y) : (x))
-#endif
-#ifndef min
-#define min(x, y)       (((x) < (y)) ? (x) : (y))
-#endif
-
-
 #define RESTORE_MAX_BACKUP_EXT 3
 #define RESTORE_VERSION_IDX    15
 
@@ -44,7 +35,8 @@ static int restoreFileReadBuff(FILE *inpFd, char *inpFile,
      tmp = getc(inpFd);
      buffer[i] = (char)tmp;
      if ( !buffer[i] ) {
-       i = max(0,i-1);
+       if (i>1) i--;
+       else i=0;
        null_cnt++;
      }
      else if ((tmp==EOF) || (tmp=='\n'))

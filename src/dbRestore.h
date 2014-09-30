@@ -39,8 +39,6 @@ extern "C" {
   int  dbRestoreSock            (char *source, char *iocName, int timeAllowed,
                                  restorePutType putType, char *cmd);
   int  dbRestoreFile            (char *source, restorePutType putType);
-  int  reboot_restore           (char *source);
-  int  restoreFile              (char *source);
   int  dbRestore                (char *source, char *iocName, int timeAllowed,
                                  restorePutType putType, char *cmd);
   int  dbRestoreReport          (char *source, char *iocName);

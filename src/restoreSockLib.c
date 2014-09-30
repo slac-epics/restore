@@ -76,8 +76,6 @@ restoreStatus restoreSockRead(restoreSockDef *sockp,
 #endif
   epicsTimeStamp startTime, endTime;
 
-  timeout.tv_sec  = RESTORE_MIN_SELECT_DELAY;
-  timeout.tv_usec = 0;
   /*
    * Read from the server's buffer.
    */
@@ -130,6 +128,8 @@ restoreStatus restoreSockRead(restoreSockDef *sockp,
     block = 1;
     socket_ioctl(sockp->ioSock, FIONBIO, &block);
 #endif
+    timeout.tv_sec  = RESTORE_MIN_SELECT_DELAY;
+    timeout.tv_usec = 0;
     status = select(sockp->ioSock+1, &fds, 0, 0, &timeout);
     if (status < 0) {
         errlogPrintf("restoreSockRead: select failure - %s\n",

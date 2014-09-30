@@ -42,7 +42,6 @@
                                on environment variables.
           dbRestoreFile - static or runtime restore from file
           dbRestoreSock - static or runtime restore from socket
-          reboot_restore, restoreFile - static restore from file (old calls)
           dbRestoreReport - report all records in the database to file,
                             stdout, or socket
 */
@@ -121,6 +120,8 @@ int dbRestore(char *source, char *iocName, int timeAllowed,
   short           restore_type;
   dbfType         field_type;
   epicsEnum16     value_enum;
+  double          value_double;
+  float           value_float;
   int             count;
   int             len;
   int             num_channels_restored    = 0;
@@ -313,6 +314,22 @@ int dbRestore(char *source, char *iocName, int timeAllowed,
               restore_type  = DBR_ENUM;
               restore_value = &value_enum;
             }
+          } else if (strcmp(data_type, "DOUBLE")) {
+            if (sscanf(value, "%lf", &value_double) == 1) {
+              if (sprintf(string_value, "%d", (int)(value_double + 0.1))) {
+                status = 0;
+                restore_value = string_value;
+                strcpy(data_type, "DOUBLE");
+              }
+            }
+          } else if (strcmp(data_type, "FLOAT")) {
+            if (sscanf(value, "%f", &value_float) == 1) {
+              if (sprintf(string_value, "%d", (int)(value_float + 0.1))) {
+                status = 0;
+                restore_value = string_value;
+                strcpy(data_type, "DOUBLE");
+              }
+            }
           }
         }
         if (status &&
@@ -492,23 +509,6 @@ int dbRestoreFile(char *source, restorePutType putType)
     return -1;
   }
   return dbRestore(source, 0, 0, putType, 0);
-}
-/*
- * Routines for backwards compatibility.
- */
-int reboot_restore(char *source)
-{
-  return dbRestoreFile(source, RESTORE_STATIC);
-}
-int restoreFile(char *source)
-{
-  char  inpFile[RESTORE_MAX_FILE_NAME_CHARS];
-  char *rsource = restoreGetEnv(source);
-  
-  if (rsource) strcpy(inpFile, rsource);
-  else         strcpy(inpFile, RESTORE_DEFAULT_FILENAME);
-  strcat(inpFile, RESTORE_DEFAULT_FILEEXT);
-  return dbRestoreFile(inpFile, RESTORE_STATIC);
 }
 
 /*
