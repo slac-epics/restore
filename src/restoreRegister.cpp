@@ -16,7 +16,24 @@
 #ifdef __cplusplus
 extern "C" {
 #endif	/* __cplusplus */
-  
+
+extern int sr_restore_incomplete_sets_ok;
+extern int restore_debug;
+
+static const iocshArg sr_restore_incomplete_sets_okArg0 = {"value", iocshArgInt};
+static const iocshArg *const sr_restore_incomplete_sets_okArgs[1] = {&sr_restore_incomplete_sets_okArg0};
+static const iocshFuncDef sr_restore_incomplete_sets_okDef = {"sr_restore_incomplete_sets_ok", 1, sr_restore_incomplete_sets_okArgs};
+static void sr_restore_incomplete_sets_okCall(const iocshArgBuf * args) {
+        sr_restore_incomplete_sets_ok = args[0].ival;
+}
+
+static const iocshArg restore_debugArg0 = {"value", iocshArgInt};
+static const iocshArg *const restore_debugArgs[1] = {&restore_debugArg0};
+static const iocshFuncDef restore_debugDef = {"restore_debug", 1, restore_debugArgs};
+static void restore_debugCall(const iocshArgBuf * args) {
+        restore_debug = args[0].ival;
+}
+
 static const iocshArg dbRestoreArg0 = {"source",      iocshArgString};
 static const iocshArg dbRestoreArg1 = {"iocName",     iocshArgString};
 static const iocshArg dbRestoreArg2 = {"timeAllowed", iocshArgInt};
@@ -73,6 +90,8 @@ void restore_Register() {
 	    return;
 	firstTime = 0;
 #endif
+        iocshRegister(&sr_restore_incomplete_sets_okDef, sr_restore_incomplete_sets_okCall);
+        iocshRegister(&restore_debugDef   , restore_debugCall);
 	iocshRegister(&dbRestoreDef       , dbRestoreCall);
 	iocshRegister(&dbRestoreReportDef , dbRestoreReportCall);
 	iocshRegister(&dbRestoreSockDef   , dbRestoreSockCall);
