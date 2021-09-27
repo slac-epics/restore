@@ -23,6 +23,7 @@
 #==============================================================
 #
 restore-R2-3-0:  build with epics base R7.0.3.1-1.0
+                 add .gitignore
 
 restore-R2-2-3:  Add iocsh interface for global variables.
 
