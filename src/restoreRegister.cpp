@@ -9,7 +9,7 @@
 #include "iocsh.h"
 #include "dbRestore.h"
 #include "epicsVersion.h"
-#if EPICS_VERSION >= 3 && EPICS_REVISION >= 14 && EPICS_MODIFICATION > 4
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,4,0)
 #include "epicsExport.h"
 #endif
 
@@ -84,7 +84,7 @@ static void dbRestoreFileCall(const iocshArgBuf * args) {
 }
   
 void restore_Register() {
-#if EPICS_VERSION == 3 && EPICS_REVISION == 14 && EPICS_MODIFICATION <= 4
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,4,0)
 	static int firstTime = 1;
 	if  (!firstTime)
 	    return;
@@ -98,13 +98,13 @@ void restore_Register() {
 	iocshRegister(&dbRestoreFileDef   , dbRestoreFileCall);
         initHookRegister(dbRestoreInitHook);
 }
-#if EPICS_VERSION >= 3 && EPICS_REVISION >= 14 && EPICS_MODIFICATION > 4
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,4,0)
 epicsExportRegistrar(restore_Register);
 #endif
 #ifdef __cplusplus
 }
 #endif	/* __cplusplus */
-#if EPICS_VERSION == 3 && EPICS_REVISION == 14 && EPICS_MODIFICATION <= 4
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,4,0)
 class restore_CommonInit {
     public:
     restore_CommonInit() {
