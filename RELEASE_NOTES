@@ -22,6 +22,9 @@
 #
 #==============================================================
 #
+R2.3.1: 2021-10-01 Bruce Hill
+	Update EPICS_VERSION test for EPICS 7
+
 R2.3.0:          build with epics base R7.0.3.1-1.0
                  add .gitignore
 
