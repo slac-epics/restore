@@ -22,6 +22,10 @@
 #
 #==============================================================
 #
+R2.3.2: 2021-10-20 Bruce Hill
+	Fixed a couple of more EPICS_VERSION tests.
+	Fix remaining build warnings by defining USE_TYPED_DSET and USE_TYPED_RSET in src/Makefile
+
 R2.3.1: 2021-10-01 Bruce Hill
 	Update EPICS_VERSION test for EPICS 7
 
