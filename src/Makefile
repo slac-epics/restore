@@ -26,6 +26,9 @@ ifdef EPICS_BASE_IOC_LIBS
 restore_LIBS = $(EPICS_BASE_IOC_LIBS)
 endif
 
+USR_CPPFLAGS += -DUSE_TYPED_DSET
+USR_CPPFLAGS += -DUSE_TYPED_RSET
+
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
