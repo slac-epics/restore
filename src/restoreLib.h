@@ -48,7 +48,7 @@
 #define RESTORE_B_FILEEXT         "B"
 #define RESTORE_FILE_OK_TAG       "FILE-WRITES-COMPLETED-SUCCESSFULLY"
 
-#if EPICS_VERSION > 3 || (EPICS_VERSION == 3 && EPICS_REVISION >= 14)
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,0,0)
 #include "epicsTime.h"
 #include "epicsThread.h"
 #define RESTORE_TIME_GET(A)     epicsTimeGetCurrent(&(A))

@@ -560,7 +560,7 @@ static int dbRestoreWrite(restoreType type, restoreFd fd, char *iocName)
    * Get current time and format it for output.
    */
   {      
-#if EPICS_VERSION >= 3 && EPICS_REVISION >= 14
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,0,0)
   epicsTimeStamp  startTime;      
   epicsTimeGetCurrent(&startTime);
   epicsTimeToStrftime(tsString, sizeof(tsString),
@@ -579,7 +579,7 @@ static int dbRestoreWrite(restoreType type, restoreFd fd, char *iocName)
    */
   len += sprintf(buffer+len, "%s\n",    RESTORE_RECORD_STRING);
   len += sprintf(buffer+len, "%s %s\n", RESTORE_IOC_STRING, iocName);
-#if EPICS_VERSION >= 3 && EPICS_REVISION >= 14
+#if EPICS_VERSION_INT >= VERSION_INT(3,14,0,0)
   len += sprintf(buffer+len, "#%s\n",   epicsReleaseVersion);
 #else /* begin 3.13 settings */
   len += sprintf(buffer+len, "#EPICS%s\n", epicsReleaseVersion+11);
